@@ -22,4 +22,4 @@ before_install:
 before_script: if [ "$JYTHON" == "true" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
 
 #
-script: PYTHON_EXE setup.py print_args.py a b c 1 2 3
+script: $PYTHON_EXE setup.py print_args.py a b c 1 2 3
