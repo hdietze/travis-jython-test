@@ -22,7 +22,7 @@ before_install:
 
 # Before run the test case, we need to make jython run some code
 before_script:
-  - if [ "$JYTHON" == "true" ]; then jython -c "print ''"; fi
+  - jython -c "print ''"
 
 # test script
-script: $PYTHON_EXE print_args.py a b c 1 2 3
+script: jython print_args.py a b c 1 2 3
