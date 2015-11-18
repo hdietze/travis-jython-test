@@ -24,7 +24,7 @@ before_install:
 before_script:
   - if [ "$JYTHON" == "true" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
   - mvn package
-  - CLASSPATH=$CLASSPATH:$(for i in lib/*.jar ; do echo -n $i: ; done).
+  - export CLASSPATH=$CLASSPATH:$(for i in lib/*.jar ; do echo -n $i: ; done).
   - export
 
 # test script
