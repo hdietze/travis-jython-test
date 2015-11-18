@@ -6,26 +6,18 @@ python:
   - "2.6"
   - "2.7"
 
-env:
-  - JYTHON=false
-
-matrix:
-  exclude:
-    - python: 2.6
-      env: JYTHON=true
-
-# we need jython if JYTHON=true
+# install jython
 before_install:
   - export JYTHON_URL='http://central.maven.org/maven2/org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar'
-  - if [ "$JYTHON" == "true" ]; then wget $JYTHON_URL -O jython_installer.jar; java -jar jython_installer.jar -s -d $HOME/jython; export PATH=$HOME/jython/bin:$PATH;jython --version; fi
+  - wget $JYTHON_URL -O jython_installer.jar; java -jar jython_installer.jar -s -d $HOME/jython; export PATH=$HOME/jython/bin:$PATH;jython --version
 
 # Before run the test case, we need to make jython run some code
 before_script:
-  - if [ "$JYTHON" == "true" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
+  - jython -c "print ''"
   - mvn package
   - export CLASSPATH=lib/*
 
 # test script
 script:
-    - $PYTHON_EXE print_args.py a b c 1 2 3
-    - $PYTHON_EXE call_owltools.py
+    - jython print_args.py a b c 1 2 3
+    - jython call_owltools.py
