@@ -7,7 +7,6 @@ python:
   - "2.7"
 
 env:
-  - JYTHON=true
   - JYTHON=false
 
 matrix:
@@ -25,7 +24,7 @@ before_script:
   - if [ "$JYTHON" == "true" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
   - mvn package
   - export CLASSPATH=lib/*
-  
+
 # test script
 script:
     - $PYTHON_EXE print_args.py a b c 1 2 3
