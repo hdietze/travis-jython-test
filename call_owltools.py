@@ -5,4 +5,4 @@ paths = map(lambda url: url.getFile(), cl.getURLs())
 print paths
 #----- try to access an owltools class
 from owltools.graph import OWLGraphWrapper
-print OWLGraphWrapper.getClass().getName()
+print OWLGraphWrapper.__class___.getName()
