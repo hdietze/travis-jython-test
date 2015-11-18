@@ -1,0 +1,1 @@
+print owltools.graph.OWLGraphWrapper.getClass().getName()

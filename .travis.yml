@@ -23,6 +23,11 @@ before_install:
 # Before run the test case, we need to make jython run some code
 before_script:
   - if [ "$JYTHON" == "true" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
+  - mvn package
+  - CLASSPATH=$CLASSPATH:$(for i in lib/*.jar ; do echo -n $i: ; done).
+  - export
 
 # test script
-script: $PYTHON_EXE print_args.py a b c 1 2 3
+script:
+    - $PYTHON_EXE print_args.py a b c 1 2 3
+    - $PYTHON_EXE call_owltools.py
