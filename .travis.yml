@@ -13,6 +13,8 @@ before_install:
 
 before_script:
   - jython -c "print ''"    # Before run the test case, we need to make jython run some code
+  - git clone https://github.com/hdietze/Brain.git  # clone Brain with updated OWL-API
+  - cd Brain; mvn install; cd ..                    # install with maven
   - mvn package             # use maven to assemble java jar dependencies in lib folder
   - export CLASSPATH=lib/*  # set up class using a wildcard (supported as of Java 6 or later)
 
@@ -20,3 +22,4 @@ before_script:
 script:
     - jython print_args.py a b c 1 2 3   # python only test
     - jython call_owltools.py            # jython test calling owltools
+    - jython call_brain.py               # jyhton test call into brain
